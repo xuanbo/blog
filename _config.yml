@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://wangxuanbo.oschina.io
+url: http://wangxuanbo.gitee.io
 root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -69,5 +69,5 @@ theme: landscape
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://git.oschina.net/wangxuanbo/blog.git
+  repo: https://gitee.com/wangxuanbo/blog.git
   branch: master
