@@ -5,7 +5,7 @@ tags: ubuntu美化
 categories: ubuntu
 ---
 
-![界面展示](https://github.com/xuanbo/blog/blob/master/source/images/myUbuntu/show.png)
+![界面展示](https://raw.githubusercontent.com/xuanbo/blog/master/source/images/myUbuntu/show.png)
 
 # 1安装ubuntu16.04 gnome
 
