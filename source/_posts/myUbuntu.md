@@ -26,7 +26,7 @@ categories: ubuntu
 
 ## 2.3字体
 
-推荐文泉驿字体,`sudo apt install ttf-wqy-microhei`
+推荐文泉驿字体 `sudo apt install ttf-wqy-microhei`
 
 ## 2.4扩展
 
