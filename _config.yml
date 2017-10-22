@@ -7,7 +7,7 @@ title: xinQing
 subtitle: 
 description: 个人博客
 author: 王漩波
-language: zh-CN
+language: zh_CN
 timezone: 
 
 # URL
@@ -63,23 +63,11 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: brewski-theme
+theme: even
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://gitee.com/wangxuanbo/blog.git
+  repo: git@gitee.com:wangxuanbo/blog.git
   branch: master
-
-# 覆盖brewski默认的主题
-theme_config:
-  logo: https://avatars3.githubusercontent.com/u/15867447?v=4&s=400&u=d6add12363d1d1929a62fb05aa24e7d5f6bbcb22
-  copyright:
-    since: 2017
-    name: 王漩波
-    url: http://wangxuanbo.gitee.io/blog/
-  menu:
-    home: /
-    gitHub: https://github.com/xuanbo
-    oschina: https://gitee.com/wangxuanbo

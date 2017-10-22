@@ -1,34 +1,38 @@
 ---
 title: ubuntu16.04 gnome自定义
-date: 2017-10-03 21:28:36
 tags: ubuntu美化
 categories: ubuntu
+date: 2017-10-03 21:28:36
 ---
+ubuntu16.04 gnome自定义.
+<!-- more -->
+
+## 界面展示
 
 ![界面展示](https://raw.githubusercontent.com/xuanbo/blog/master/source/images/myUbuntu/show.png)
 
-# 1安装ubuntu16.04 gnome
+## 安装ubuntu16.04 gnome
 
 * 下载iso
 * 写入U盘
 * bios设置U盘启动
 * 按照提示安装
 
-# 2美化
+## 美化
 
-## 2.1主题
+### 主题
 
 推荐[adapta-gtk-theme](https://github.com/adapta-project/adapta-gtk-theme)
 
-## 2.2图标
+### 图标
 
 推荐[la-capitaine-icon-theme](https://github.com/keeferrourke/la-capitaine-icon-theme)
 
-## 2.3字体
+### 字体
 
 推荐文泉驿字体 `sudo apt install ttf-wqy-microhei`
 
-## 2.4扩展
+### 扩展
 
 * Alternatetab
 * Coverflow alt-tab
@@ -37,7 +41,7 @@ categories: ubuntu
 * Openweather
 * User themes
 
-## 2.5终端
+### 终端
 
 * 安装zsh
 `sudo apt install zsh`
@@ -54,7 +58,7 @@ chsh -s /bin/zsh
 重启
 ```
 
-# 3常用软件
+## 常用软件
 
 * 搜狗输入法
 * 截图软件shutter
