@@ -21,7 +21,6 @@ function showWord(index, point) {
 function animate(div) {
     let move = setInterval(function() {
         div.style.top = parseInt(div.style.top) - 10 + 'px'
-        // div.style.left = parseInt(div.style.left) + 10 + 'px'
     }, 100)
     setTimeout(function() {
         clearInterval(move)
