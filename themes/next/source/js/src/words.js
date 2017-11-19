@@ -3,8 +3,8 @@ const WORDS = ['富强', '民主', '文明', '和谐', '自由', '平等', '公�
 document.addEventListener('click', function(e) {
     let index = parseInt(Math.random() * 12)
     showWord(index, {
-        left: e.clientX,
-        top: e.clientY
+        left: e.pageX,
+        top: e.pageY
     })
 })
 
@@ -21,7 +21,7 @@ function showWord(index, point) {
 function animate(div) {
     let move = setInterval(function() {
         div.style.top = parseInt(div.style.top) - 10 + 'px'
-        div.style.left = parseInt(div.style.left) + 10 + 'px'
+        // div.style.left = parseInt(div.style.left) + 10 + 'px'
     }, 100)
     setTimeout(function() {
         clearInterval(move)
