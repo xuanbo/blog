@@ -65,7 +65,10 @@ cat output/*
 </configuration>
 ```
 
-现在已经配置成功（但是你可能想在YARN上执行job，[请直接官网教程，配置一哈](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html#YARN_on_a_Single_Node)）了，我们启动看看效果。
+现在已经配置成功了，我们启动看看效果。
+
+
+**提示：** 你可能想在YARN上执行job，[请直接官网教程，配置一哈](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html#YARN_on_a_Single_Node)
 
 * 格式化文件系统
 ```bash
