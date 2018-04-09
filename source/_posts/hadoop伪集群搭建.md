@@ -50,7 +50,7 @@ cat output/*
 <configuration>
     <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://localhost:9000</value>
+        <value>hdfs://ip(服务器的内网ip哦，如果是localhost，那么在本地环境下telnet不通的哦):9000</value>
     </property>
 </configuration>
 ```
@@ -70,7 +70,7 @@ cat output/*
 
 **提示：** 你可能想在YARN上执行job，[请直接官网教程，配置一哈](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html#YARN_on_a_Single_Node)
 
-* 格式化文件系统
+* 格式化文件系统（**第一次滴时候**）
 ```bash
 bin/hdfs namenode -format
 ```

@@ -9,11 +9,9 @@ date: 2018-04-03 15:01:03
 
 ## 客户端搭建
 
-配置的每一个集群节点都可以做一个Hadoop客户端。但是我们一般都不会拿来做集群的服务器来做客户端，需要单独的配置一个客户端。
+网上说： 配置的每一个集群节点都可以做一个Hadoop客户端。但是我们一般都不会拿来做集群的服务器来做客户端，需要单独的配置一个客户端。
 
 通常情况下我们写完程序，需要打包成jar传到集群中的某一个节点中，用hadoop jar命令运行。
-
-由于我没有集群环境，也懒得打包成jar传到同学的服务器上（被我搭建成hadoop的伪集群）。因此在本地搭建一个伪集群，当作为客户端。
 
 ### windows环境下搭建hadoop
 
@@ -23,12 +21,11 @@ date: 2018-04-03 15:01:03
 * 将bin/hadoop.dll复制到C:\Windows\System32中
 * 将HadoopWindows7配置到环境变量HADOOP_HOME
 
-完成后，就成为一个本地的伪集群了。我们后面拿它本地测试。
+完成后，就成为一个本地的伪集群了。后面可以拿它本地测试。
 
 ### 如何启动
 
 类似linxu下，我们在sbin目录下执行start-dfs即可启动.
-
 
 ## API介绍
 
@@ -56,56 +53,60 @@ FileSystem fs = FileSystem.get(new URI("hdfs://IP:9000"), conf);
 fs.delete(new Path("/data.txt"));
 ```
 
-## Java访问HDFS
+## 直接连接集群
 
-### 打印HDFS某个路径下的文件
+不知道为啥别人不推荐直接连接，我直接连接在centeros上搭建的伪集群。直接运行单元测试用例，简单粗暴。
 
-```java
-/**
- * Hadoop FileSystem使用
- *
- * Created by xuan on 2018/4/3
- */
-public class FileSystemUsage {
+```
+public class FileSystemTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(FileSystemUsage.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FileSystemTest.class);
 
-    /**
-     * URI.create("hdfs://:9000")
-     * ip为nameNode的ip
-     */
-    private final URI uri;
+    private FileSystem fs;
+    private Configuration conf;
 
-    public FileSystemUsage(URI uri) {
-        this.uri = uri;
+    @Before
+    public void setup() throws IOException, InterruptedException {
+        conf = new Configuration();
+        fs = FileSystem.get(URI.create("hdfs://ip(NameNode的公网ip):9000"), conf, "root");
     }
 
-    /**
-     * 递归打印出Hadoop某个路径下的文件
-     *
-     * @param path Hadoop某个路径
-     * @param recursive 是否递归
-     * @throws IOException IOException
-     */
-    public void listFiles(final Path path, final boolean recursive) throws IOException {
-        // 创建Configuration对象
-        Configuration conf = new Configuration();
-        // 创建FileSystem对象
-        FileSystem fs = FileSystem.get(uri, conf);
-        // 迭代给定的目录
-        RemoteIterator<LocatedFileStatus> iterator = fs.listFiles(path, recursive);
-        while (iterator.hasNext()) {
-            LocatedFileStatus fileStatus = iterator.next();
+    @Test
+    public void listFiles() throws IOException {
+        RemoteIterator<LocatedFileStatus> it = fs.listFiles(new Path("/"), true);
+        while (it.hasNext()) {
+            LocatedFileStatus fileStatus = it.next();
             LOG.info("fileStatus: {}", fileStatus);
         }
     }
 
+    @Test
+    public void mkdirs() throws IOException {
+        fs.mkdirs(new Path("/test/a"));
+    }
+
+    @Test
+    public void copyFromLocalFile() throws IOException {
+        fs.copyFromLocalFile(new Path("/download/rabbitmq-server-windows-3.7.3.zip"), new Path("/test/a"));
+    }
+
+    @Test
+    public void copyToLocalFile() throws IOException {
+        fs.copyToLocalFile(new Path("/test/a/hadoop-2.6.0-cdh5.14.0.tar.gz"), new Path("/download"));
+    }
+
+    @Test
+    public void deleteOnExit() throws IOException {
+        fs.deleteOnExit(new Path("/test/a/rabbitmq-server-windows-3.7.3.zip"));
+    }
+
+    @After
+    public void destroy() throws IOException {
+        fs.close();
+        conf = null;
+    }
 }
 ```
-
-### 运行
-
-进去本地hadoop的bin目录下，执行hadoop jar xxx.jar mainClass即可本地调试，很方便，省去上传到服务器上中了。
 
 ### 代码
 
