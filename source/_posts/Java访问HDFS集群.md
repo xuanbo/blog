@@ -57,7 +57,7 @@ fs.delete(new Path("/data.txt"));
 
 不知道为啥别人不推荐直接连接，我直接连接在centeros上搭建的伪集群。直接运行单元测试用例，简单粗暴。
 
-```
+```java
 public class FileSystemTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(FileSystemTest.class);

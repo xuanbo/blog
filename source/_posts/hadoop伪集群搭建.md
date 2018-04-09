@@ -7,10 +7,18 @@ date: 2018-04-03 11:37:44
 介绍hadoop的伪集群环境搭建，以及基本的HDFS命令，适用于个人学习。
 <!-- more -->
 
+## 版本选择
+
+* Apache Hadoop
+* CDH
+* 其他
+
+CDH基于Apache Hadoop，帮我们修复了hadoop生态圈中jar的冲突，并且提供在线安装hadoop生态圈各个组件。推荐使用。
+
 ## 伪集群搭建
 
-> 本教程采用hadoop2.9搭建，基于同学购买的腾讯centeros6.5入门版安装搭建。
-> [推荐参考官网](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
+> 本教程采用hadoop-2.6.0-cdh5.14.0搭建，基于同学购买的腾讯centeros6.5入门版安装搭建。
+> [参考官网](http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
 
 ### java环境
 
@@ -20,7 +28,9 @@ date: 2018-04-03 11:37:44
 
 #### 下载并解压
 
-过程略，记住自己解压后hadoop的路径，我的为/xuanbo/hadoop-2.9.0，下面该路径以HADOOP_HOME代替。
+过程略，记住自己解压后hadoop的路径，我的为/xuanbo/hadoop-2.6.0-cdh5.14.0，下面该路径以HADOOP_HOME代替。
+
+[下载hadoop-2.6.0-cdh5.14.0.tar.gz](http://archive.cloudera.com/cdh5/cdh/5/hadoop-2.6.0-cdh5.14.0.tar.gz)
 
 #### 修改配置文件
 
@@ -40,7 +50,7 @@ export JAVA_HOME=/usr/java/latest
 ```bash
 mkdir input
 cp etc/hadoop/*.xml input
-bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.9.0.jar grep input output 'dfs[a-z.]+'
+bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.0.jar grep input output 'dfs[a-z.]+'
 cat output/*
 ```
 最后如果输入内容，就成功搭建了单机版。我们下面继续配置成伪集群。
@@ -107,9 +117,9 @@ sbin/start-dfs.sh
 hdfs dfs -mkdir /input
 ```
 
-* 将本地/xuanbo/hadoop-2.9.0.tar.gz上传到hadoop的/input中
+* 将本地/xuanbo/hadoop-2.6.0-cdh5.14.0.tar.gz上传到hadoop的/input中
 ```bash
-hdfs dfs -put /xuanbo/hadoop-2.9.0.tar.gz /input
+hdfs dfs -put /hadoop-2.6.0-cdh5.14.0.tar.gz /input
 ```
 
 * 查看上传的文件
